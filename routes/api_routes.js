@@ -4,6 +4,42 @@ const router = express.Router()
 
 const uniqid = require('uniqid')
 
+const fs = require('fs')
+
+// GET request for reviews
+router.get('/api/notes', (req, res) => {
+    fs.readFile('db/db.json', (err, data => {
+        if(err) {
+            console.log(err)
+        } else {
+            return res.json(JSON.parse(data))
+        }
+    }
+    ))
+  });
+
+router.post('/api/notes', (req, res) => {
+    fs.readFile('db/db.json', (err, data) => {
+        if(err) {
+            console.log(err)
+        } else {
+            const db = JSON.parse(data)
+            const newNote = req.body
+            const id = 'id'
+            const noteId = uniqid()
+            newNote[id] = noteId
+            db.push(newNote)
+
+            fs.writeFile('db/db.json', JSON.stringify(db), (err) => {
+                if(err) {
+                    console.log(err)
+                } else {
+                    return res.json(db)
+                }
+            })
+        }
+    })
+})
 
 // delete rquires an ID so everything should have an ID when posted
 
@@ -12,15 +48,6 @@ const uniqid = require('uniqid')
 //  const = uniqid() needs attaching to key value
 
 // id will need to be added as a property to POST reqs
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router
