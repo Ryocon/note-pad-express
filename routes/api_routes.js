@@ -7,16 +7,12 @@ const uniqid = require('uniqid')
 const fs = require('fs')
 
 // GET request for reviews
-router.get('/api/notes', (req, res) => {
-    fs.readFile('db/db.json', (err, data => {
-        if(err) {
-            console.log(err)
-        } else {
-            return res.json(JSON.parse(data))
-        }
-    }
-    ))
-  });
+router.get("/api/notes",(req,res)=>{
+    fs.readFile("db/db.json", "utf8", (err, data)=>{
+       if(err) throw err
+       return res.json(JSON.parse(data))
+        })
+    })
 
 router.post('/api/notes', (req, res) => {
     fs.readFile('db/db.json', (err, data) => {
