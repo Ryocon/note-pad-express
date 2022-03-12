@@ -37,6 +37,24 @@ router.post('/api/notes', (req, res) => {
     })
 })
 
+
+// router.delete('/api/notes/:id', (req, res) => {
+//     fs.unlink('db/db.json' + uniqid(), (err, data) => {
+//         if(err) {
+//             console.log(err)
+//         } else {
+//             console.log()
+
+//         }
+//     })
+
+
+// })
+
+// router.delete('/api/notes/:id', req, res => {
+//     res.send('DELETE req')
+// })
+
 // delete rquires an ID so everything should have an ID when posted
 
 // uniqid package
