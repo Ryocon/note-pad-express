@@ -39,7 +39,7 @@ router.post('/api/notes', (req, res) => {
 
 
 // router.delete('/api/notes/:id', (req, res) => {
-//     fs.unlink('db/db.json' + uniqid(), (err, data) => {
+//     fs.unlink('db/db.json.id', (err, data) => {
 //         if(err) {
 //             console.log(err)
 //         } else {
@@ -47,9 +47,34 @@ router.post('/api/notes', (req, res) => {
 
 //         }
 //     })
-
-
 // })
+
+router.delete('/api/notes/:id', (req, res) => {
+
+    fs.readFile('db/db.json', (err, data) => {
+        if(err) {
+            console.log(err)
+        } else {
+            const db = JSON.parse(data)
+            const deleteNote = req.body
+            const id = 'id'
+            const noteId = uniqid()
+            deleteNote[id] = noteId
+
+    }
+
+
+    fs.unlink('noteId', JSON.stringify(db), (err) => {
+        if(err) {
+            console.log(err)
+        } else {
+            console.log('Deleted!')
+        }
+    })
+    })
+})
+
+
 
 // router.delete('/api/notes/:id', req, res => {
 //     res.send('DELETE req')
